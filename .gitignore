@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+.Python
+build/
+dist/
+*.egg-info/
+
+# Virtualenvs
+.venv/
+venv/
+env/
+
+# Environment & secrets
+.env
+.env.local
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data — vector store is large and project-specific
+data/*
+!data/.gitkeep
+!data/README.md
+
+# Eval result dumps
+results/
+*.json.bak
+# Allow docs (screenshots, etc.)
+!docs/
+!docs/*.png
+!docs/*.jpg

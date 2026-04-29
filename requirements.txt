@@ -1,0 +1,14 @@
+pandas>=2.0
+numpy>=1.26
+python-dotenv>=1.0
+tqdm>=4.66
+openai>=1.40
+gradio>=6.0
+plotly>=5.20
+rank_bm25>=0.2.2
+langchain>=0.3
+langchain-core>=0.3
+langchain-community>=0.3
+langchain-openai>=0.2
+langchain-chroma>=0.1.4
+langchain-classic>=1.0
