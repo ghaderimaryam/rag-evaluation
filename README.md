@@ -2,14 +2,6 @@
 
 > Benchmark and improve any LangChain-based RAG system with 100+ test cases, retrieval + answer metrics, 5 plug-and-play retrieval techniques, and a live comparison dashboard.
 
-<p align="left">
-  <img src="https://img.shields.io/badge/python-3.10%2B-blue?logo=python&logoColor=white" alt="Python 3.10+"/>
-  <img src="https://img.shields.io/badge/openai-gpt--4o--mini-412991?logo=openai&logoColor=white" alt="OpenAI"/>
-  <img src="https://img.shields.io/badge/langchain-0.3-1C3C3C?logo=langchain&logoColor=white" alt="LangChain"/>
-  <img src="https://img.shields.io/badge/chromadb-vector%20store-FFB000" alt="ChromaDB"/>
-  <img src="https://img.shields.io/badge/gradio-6-F97316?logo=gradio&logoColor=white" alt="Gradio"/>
-  <img src="https://img.shields.io/badge/license-MIT-green" alt="MIT License"/>
-</p>
 
 Built to evaluate the [Event Planning AI Assistant](https://github.com/ghaderimaryam/event-plannig-ai-assistant) — but the framework is general: point it at any persisted Chroma index, define your own test cases, and start measuring.
 
