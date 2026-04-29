@@ -10,7 +10,7 @@ Built to evaluate the [Event Planning AI Assistant](https://github.com/ghaderima
 ---
 
 
-## ✨ What it does
+## What it does
 
 - **Quantifies retrieval quality** with MRR, nDCG@5, and Hit@5
 - **Quantifies answer quality** via LLM-as-judge (Accuracy / Completeness / Relevance, 1–5)
@@ -18,22 +18,22 @@ Built to evaluate the [Event Planning AI Assistant](https://github.com/ghaderima
 - **Live dashboard** with per-question drilldown, technique-vs-technique deltas, and a comparison chart
 - **Parallel evaluation** — 100 test cases finish in 2–4 minutes per technique
 
-## 🏗️ Architecture
+##  Architecture
 
 ```mermaid
 flowchart LR
-    TC["📝 100+ test cases<br/>(easy / medium / hard)"] --> RUN
-    VS[("🗄️ Chroma index<br/>(your RAG)")] --> TECH
-    TECH["🔄 Technique<br/>(baseline · mmr · multi_query<br/>· hybrid · reranker)"] --> RUN
-    RUN["⚙️ Runner<br/>parallel evaluation"] --> RM["📐 Retrieval metrics<br/>MRR · nDCG · Hit@5"]
-    RUN --> AM["🧠 LLM-as-judge<br/>Acc · Comp · Rel"]
-    RM --> DASH["📊 Dashboard<br/>(Gradio + Plotly)"]
+    TC[" 100+ test cases<br/>(easy / medium / hard)"] --> RUN
+    VS[(" Chroma index<br/>(your RAG)")] --> TECH
+    TECH[" Technique<br/>(baseline · mmr · multi_query<br/>· hybrid · reranker)"] --> RUN
+    RUN[" Runner<br/>parallel evaluation"] --> RM[" Retrieval metrics<br/>MRR · nDCG · Hit@5"]
+    RUN --> AM[" LLM-as-judge<br/>Acc · Comp · Rel"]
+    RM --> DASH[" Dashboard<br/>(Gradio + Plotly)"]
     AM --> DASH
 ```
 
 The five techniques all implement the same one-function interface — `get_retriever(vectorstore) -> BaseRetriever` — so the runner is fully decoupled from how retrieval is done. Adding a sixth technique is one new file.
 
-## 🚦 Quick start
+##  Quick start
 
 ### Prerequisites
 - Python 3.10+
@@ -95,7 +95,7 @@ python eval_app.py
 
 Browser opens to the dashboard. Pick a technique, click **Run evaluation**, watch the progress bar. Then pick another technique and click Run — the metric cards now show ▲/▼ deltas vs the baseline run, and the comparison chart fills in another bar group.
 
-## 📁 Project structure
+##  Project structure
 
 ```
 rag-evaluation/
@@ -122,7 +122,7 @@ rag-evaluation/
 └── README.md
 ```
 
-## 🧠 The 5 techniques
+##  The 5 techniques
 
 Each is a single Python file implementing `get_retriever(vectorstore)`. Same interface, very different behavior.
 
@@ -136,7 +136,7 @@ Each is a single Python file implementing `get_retriever(vectorstore)`. Same int
 
 Pick a technique by passing its name on the CLI or selecting it from the dashboard dropdown.
 
-## 📐 Metrics
+##  Metrics
 
 **Retrieval (computed without LLM, on the retrieved sources):**
 - **MRR (Mean Reciprocal Rank)** — where in the ranked list does the *first* correct vendor appear? Rank 1 → 1.0, rank 2 → 0.5, not found → 0.0.
@@ -152,7 +152,7 @@ Pick a technique by passing its name on the CLI or selecting it from the dashboa
 
 **Overall score:** weighted average — 40% retrieval (Hit@5/MRR/nDCG) + 60% answer quality.
 
-## 🧰 Tech stack
+##  Tech stack
 
 | Layer | Choice | Why |
 |-------|--------|-----|
@@ -165,7 +165,7 @@ Pick a technique by passing its name on the CLI or selecting it from the dashboa
 
 
 
-## 📈 Findings
+##  Findings
 
 The interesting question for any RAG eval framework isn't "do my techniques win?" — it's "where do they win, where do they lose, and is the signal real?" Running this framework on the bundled vendor RAG produced these results.
 
@@ -206,13 +206,13 @@ Filtering to harder queries — comparisons, numeric filters, out-of-scope, mult
 
 The framework itself is what's portable: swap in a larger catalog or a noisier test set, and the same five techniques may rank very differently.
 
-## 🛣️ Extending it
+##  Extending it
 
 - **Add a 6th technique:** drop `evaluation/techniques/your_technique.py` with a `get_retriever()` function and a `DESCRIPTION` string. Add the name to the `TECHNIQUES` list in `runner.py`. That's it.
 - **Use your own test cases:** edit `evaluation/test_cases.py`. The eval works with any number of cases (1, 1000, whatever).
 - **Plug in a different RAG:** any persisted Chroma index works — point `CHROMA_PATH` at it via `.env`. Match `MODEL_EMBED` and `COLLECTION_NAME` to whatever your index was built with.
 
-## 📜 License
+##  License
 
 MIT — see [LICENSE](LICENSE).
 
